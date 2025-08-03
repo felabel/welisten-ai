@@ -1,0 +1,72 @@
+@import "../../styles/index";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-purple);
+  padding: 24px;
+  border-radius: 8px;
+  color: var(--white);
+  font-family: "Jost-Regular", sans-serif;
+  @include mq(640px) {
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .suggestions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: "Jost-Bold";
+
+    h2 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      @include mq(640px) {
+        font-size: 14px;
+      }
+    }
+    span {
+      font-family: "Jost-Regular";
+      font-size: 14px;
+      @include mq(640px) {
+        display: none;
+      }
+    }
+  }
+
+  .my_select {
+    display: flex;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--white);
+    min-width: 120px;
+    height: 32px !important;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--bg-purple);
+    outline: 0;
+    appearance: 0;
+  }
+
+  .custom_select .select_icon {
+    position: absolute;
+    right: 8px;
+    font-size: 14px;
+    color: #ffffff;
+    pointer-events: none;
+    transform: rotate(180deg);
+  }
+
+  option {
+    background: #373f68; /* Background color of the dropdown options */
+    color: #ffffff; /* Text color for options */
+    font-size: 16px;
+    padding: 8px;
+  }
+}

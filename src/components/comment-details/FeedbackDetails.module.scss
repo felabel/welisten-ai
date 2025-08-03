@@ -1,0 +1,158 @@
+.wrapper {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: "Jost-Regular", sans-serif;
+}
+.btn_section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  .goBack {
+  }
+}
+
+.editFeedback {
+  float: right;
+}
+
+.feedbackCard {
+  display: flex;
+  gap: 16px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.votes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upvote {
+  background: none;
+  border: none;
+  color: #4661e6;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.voteCount {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3a4374;
+}
+
+.description {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #647196;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #f2f4fe;
+  color: #4661e6;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-right: 16px;
+}
+
+.commentCount {
+  color: #647196;
+  font-size: 14px;
+}
+
+.commentsSection {
+  margin-top: 32px;
+}
+.replies_wrapper {
+  display: flex;
+  gap: 1rem;
+  position: relative;
+  .replies_line {
+    width: 1px;
+    background-color: grey;
+    height: auto;
+  }
+}
+
+.comment {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.commentBody {
+  flex: 1;
+}
+
+.commentAuthor {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.username {
+  font-size: 12px;
+  color: #647196;
+}
+
+.reply {
+  background: none;
+  border: none;
+  color: #4661e6;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.addComment {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.commentInput {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #dfe3fa;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.commentFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.postComment {
+  background: #4661e6;
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}

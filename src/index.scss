@@ -1,0 +1,49 @@
+/* index.css */
+
+/* Define font-face for Jost with different weights */
+@font-face {
+  font-family: "Jost-Regular";
+  src: url("/fonts/Jost-Regular.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jost-Medium";
+  src: url("/fonts/Jost-Medium.ttf");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jost-SemiBold";
+  src: url("/fonts/Jost-SemiBold.ttf");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Jost-Bold";
+  src: url("/fonts/Jost-Bold.ttf");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Jost-Thin";
+  src: url("/fonts/Jost-Thin.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "Jost-Regular";
+//   src: url("/fonts/Jost-Regular.ttf");
+//   font-weight: 500;
+//   font-style: normal;
+// }
+.main_wrapper {
+  width: 100%;
+  max-width: 1920px;
+  margin: auto;
+  box-sizing: border-box;
+}

@@ -1,0 +1,48 @@
+@import "./styles/mixin.scss";
+@import "./styles/variables.scss";
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #f7f8fd;
+  box-sizing: border-box;
+}
+.app {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f7f8fd;
+  height: 100vh;
+  overflow-x: auto;
+  @include webkit;
+  @include mq(820px) {
+    grid-template-columns: 1fr; // Single-column layout
+    grid-template-rows: auto;
+  }
+  aside {
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+body {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+body {
+  &.modal-open {
+    height: 100vh;
+    overflow: hidden;
+  }
+}

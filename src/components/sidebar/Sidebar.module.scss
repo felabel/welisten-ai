@@ -1,0 +1,122 @@
+@import "../../styles/index";
+.sidebar {
+  border-radius: 10px;
+  box-sizing: border-box;
+  @include mq(820px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  @include mq(640px) {
+    display: block;
+    width: 100%;
+  }
+  .brand {
+    padding: 32px;
+    background: linear-gradient(to right, var(--blue), var(--purple));
+    border-radius: 8px;
+    @include box-shadow;
+    h1 {
+      font-size: 1.5rem;
+
+      color: var(--white);
+      padding: 0;
+      margin: 0;
+      font-family: "Jost-Bold", sans-serif;
+    }
+    p {
+      color: var(--gray-light);
+      padding: 0.25rem 0;
+      margin: 0;
+      font-size: 13px;
+      font-family: "Jost-Medium", sans-serif;
+    }
+  }
+
+  .filters {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    background-color: var(--white);
+    padding: 32px;
+    @include medium-radius;
+    @include mq(820px) {
+      margin: 0;
+    }
+    button {
+      background-color: var(--gray-light);
+      border: none;
+      border-radius: 5px;
+      padding: 5px 15px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--blue);
+      font-family: "Jost-SemiBold";
+
+      &:hover {
+        background-color: #d6d6d6;
+      }
+      &.active {
+        background-color: #4661e6;
+        color: white;
+      }
+    }
+  }
+
+  .roadmap {
+    background-color: var(--white);
+    padding: 32px;
+    @include medium-radius;
+    @include box-shadow;
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-family: "Jost-Bold", sans-serif;
+      color: var(--text-dark);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+        color: var(--text-light);
+        &:nth-child(1) .dot {
+          background-color: var(--salmon);
+        }
+        &:nth-child(2) .dot {
+          background-color: var(--purple);
+        }
+        &:nth-child(3) .dot {
+          background-color: var(--sky-blue);
+        }
+        .inner_flex {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .roadmap_name {
+            font-family: "Jost-Regular";
+            font-size: 1rem;
+          }
+        }
+        .roadmap_count {
+          font-size: 1rem;
+          font-family: "Jost-Bold", sans-serif;
+        }
+
+        .dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          display: inline-flex;
+        }
+      }
+    }
+  }
+}

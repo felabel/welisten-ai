@@ -1,0 +1,32 @@
+.addButton {
+  background-color: var(--purple);
+  color: white;
+  padding: 12.5px 24px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #694bcb;
+  }
+}
+
+.back_btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  gap: 16px;
+  .icon {
+    transform: rotate(270deg);
+    margin-left: -4px;
+  }
+  .text {
+    font-size: 14px;
+    color: var(--white);
+    font-family: "Jost-Bold", sans-serif !important;
+  }
+}
