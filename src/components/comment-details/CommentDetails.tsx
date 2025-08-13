@@ -7,6 +7,7 @@ import Replies from "../Replies/Replies";
 import {
   useGetFeedbackByIdQuery,
   useAddCommentMutation,
+  useGetCommentsByFeedbackIdQuery,
 } from "../../services/protectedApi";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
@@ -16,15 +17,18 @@ const FeedbackDetails = () => {
   const { id } = useParams();
   const feedbackId = id ?? "";
   const singleFeedbackQueryResult = useGetFeedbackByIdQuery(feedbackId);
-  const suggestion = singleFeedbackQueryResult.data?.feedback;
+  const suggestion = singleFeedbackQueryResult.data;
   const navigate = useNavigate();
   const auth = useSelector((state: RootState) => state.auth.user);
   const [addComment] = useAddCommentMutation();
-
-  // State for comment text
   const [commentText, setCommentText] = useState("");
   const charLimit = 225;
   const charsLeft = charLimit - commentText.length;
+
+  const singleCommentsQueryResult = useGetCommentsByFeedbackIdQuery(feedbackId);
+  const comments = singleCommentsQueryResult.data;
+
+  console.log("Comments:", comments);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,11 +36,11 @@ const FeedbackDetails = () => {
 
     try {
       const payload: AddCommentRequest = {
-        id: feedbackId,
-        userId: auth.fullUser?.id, // Using token as userId - adjust if your API expects different
+        feedbackId: feedbackId,
+        // userId: userId,
         text: commentText,
-        email: auth.email,
-        username: auth.fullUser?.username,
+        // email: auth.email,
+        // username: auth.fullUser?.username,
       };
 
       const result = await addComment(payload).unwrap();
@@ -61,19 +65,17 @@ const FeedbackDetails = () => {
         </div>
 
         <SuggestionCard
-          // @ts-ignore
-          title={suggestion?.title}
-          category={suggestion?.category}
-          // @ts-ignore
-          detail={suggestion?.detail}
+          title={suggestion?.title ?? ""}
+          category={suggestion?.category ?? ""}
+          detail={suggestion?.detail ?? ""}
           comments={suggestion?.comments?.length}
           id={feedbackId}
           upvotes={suggestion?.upvotes}
         />
 
         <div className={styles.commentsSection}>
-          <h3>{suggestion?.comments?.length} comments</h3>
-          <Replies replies={suggestion?.comments} feedbackId={feedbackId} />
+          <h3>{comments?.length} comments</h3>
+          <Replies replies={comments} feedbackId={feedbackId} />
         </div>
 
         <form className={styles.addComment} onSubmit={handleSubmit}>

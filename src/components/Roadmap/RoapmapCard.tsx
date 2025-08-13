@@ -35,12 +35,11 @@ const RoadmapCard: React.FC<RoadmapCardProps> = ({
   id,
 }) => {
   const [upvoteFeedback] = useUpvoteFeedbackMutation();
-  const userId = useSelector(
-    (state: RootState) => state.auth.user?.fullUser?.id
-  );
+  const userId = useSelector((state: RootState) => state.auth.user.userId);
 
   const handleUpvote = async () => {
     if (!userId) {
+      toast.error("No user found.");
       return;
     }
     const payload: any = {

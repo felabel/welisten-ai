@@ -31,7 +31,7 @@ const SuggestionCard = ({
 
   const handleUpvote = async () => {
     if (!userId) {
-      alert("no user id found, please login to upvote");
+      toast.error("No user found.");
       return;
     }
     const payload: any = {

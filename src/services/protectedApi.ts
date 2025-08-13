@@ -60,7 +60,7 @@ export const baseQueryWithReauth: BaseQueryFn<
 export const protectedApi = createApi({
   reducerPath: "protectedApi",
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["Feedback", "singleFeedback"],
+  tagTypes: ["Feedback", "singleFeedback", "singleComment"],
   endpoints: (builder) => ({
     createFeedback: builder.mutation({
       query: (feedbackData) => ({
@@ -97,7 +97,7 @@ export const protectedApi = createApi({
       providesTags: ["Feedback"],
     }),
 
-    getFeedbackById: builder.query<FeedBackResponse, string>({
+    getFeedbackById: builder.query<FeedBack, string>({
       query: (id) => ({
         url: `/feedback/${id}`,
         method: "GET",
@@ -116,11 +116,20 @@ export const protectedApi = createApi({
     // add comment on figma
     addComment: builder.mutation<AddCommentResponse, AddCommentRequest>({
       query: (commentData) => ({
-        url: "/feedback/comment",
+        url: "/comments",
         method: "POST",
         body: commentData,
       }),
-      invalidatesTags: ["Feedback", "singleFeedback"],
+      invalidatesTags: ["singleFeedback", "singleComment"],
+    }),
+
+    // get comments by feedback id
+    getCommentsByFeedbackId: builder.query<Comment[], string>({
+      query: (id) => ({
+        url: `/comments/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["singleComment"],
     }),
 
     //upvoteFeedback
@@ -156,9 +165,9 @@ export const protectedApi = createApi({
 
     updateFeedbackStatus: builder.mutation({
       query: ({ id, status }) => ({
-        url: `feedback/status`,
-        method: "PUT",
-        body: { id, status },
+        url: `feedback/${id}/status`,
+        method: "PATCH",
+        body: { status },
       }),
     }),
 
@@ -183,4 +192,5 @@ export const {
   useGetStatusCountQuery,
   useUpdateFeedbackStatusMutation,
   useUpvoteFeedbackMutation,
+  useGetCommentsByFeedbackIdQuery,
 } = protectedApi;

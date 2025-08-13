@@ -48,15 +48,16 @@ export interface Reply {
 export type FeedBackResponse = {
   message: string;
   feedbacks: FeedBack[];
-  feedback?: FeedBack;
+  data?: FeedBack;
 };
 
 export interface AddCommentRequest {
-  id: string;
-  userId: string;
+  // id: string;
+  feedbackId: string;
+  // userId: string;
   text: string;
-  email: string;
-  username: string;
+  // email: string;
+  // username: string;
 }
 export interface AddCommentResponse {
   message: string;

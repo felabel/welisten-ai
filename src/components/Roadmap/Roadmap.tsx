@@ -10,7 +10,7 @@ import {
 } from "../../services/protectedApi";
 
 type Card = {
-  id: string;
+  _id: string;
   status: string;
   title: string;
   detail: string;
@@ -58,7 +58,7 @@ const Roadmap: React.FC = () => {
     newCategory: keyof RoadmapData
   ) => {
     const { card } = JSON.parse(event.dataTransfer.getData("cardData"));
-
+    console.log("Dropped card:", card._id, "New category:", newCategory);
     // Determine the new status based on the category
     const newStatus =
       newCategory === "planned"
@@ -70,7 +70,7 @@ const Roadmap: React.FC = () => {
     try {
       // Update the status on the server
       await updateFeedbackStatus({
-        id: card.id,
+        id: card._id,
         status: newStatus,
       }).unwrap();
 
@@ -85,7 +85,7 @@ const Roadmap: React.FC = () => {
   const renderCards = (category: keyof RoadmapData) => {
     return roadmapData[category].map((card) => (
       <div
-        key={card.id}
+        key={card._id}
         draggable
         onDragStart={(e) => handleDrag(e, card, category)}
         onDragOver={(e) => e.preventDefault()}
@@ -93,7 +93,7 @@ const Roadmap: React.FC = () => {
         style={{ marginBottom: "1rem" }}
       >
         <RoadmapCard
-          id={card.id}
+          id={card._id}
           status={card.status}
           title={card.title}
           description={card.detail}
