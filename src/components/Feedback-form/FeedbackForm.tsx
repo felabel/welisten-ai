@@ -26,29 +26,29 @@ const FeedbackForm = () => {
   const { id } = useParams();
   const feedbackId = id ?? "";
   const singleFeedbackQueryResult = useGetFeedbackByIdQuery(feedbackId);
+      // @ts-expect-error: error may not have 'data' property, but we want to access error message if present
   const feedback = singleFeedbackQueryResult.data?.feedback;
 
   const {
     control,
     handleSubmit,
     setValue,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FeedbackInputs>({
     mode: "onChange",
   });
 
-  const [createFeedback] = useCreateFeedbackMutation();
-  const [updateFeedback] = useUpdateFeedbackMutation();
+  const [createFeedback, { isLoading: isCreating }] = useCreateFeedbackMutation();
+  const [updateFeedback, { isLoading: isUpdating }] = useUpdateFeedbackMutation();
 
   const onSubmit: SubmitHandler<FeedbackInputs> = async (data) => {
     try {
       if (isEdit) {
         const response = await updateFeedback({
-          // @ts-ignore
+          // @ts-expect-error: "Feedback ID is required",
           id: feedbackId,
           ...data,
         }).unwrap();
-
         toast.success(response?.message || "Feedback  successfully!");
       } else {
         const response = await createFeedback(data).unwrap();
@@ -56,7 +56,8 @@ const FeedbackForm = () => {
       }
       navigate("/dashboard");
     } catch (error) {
-      toast.error("Failed to submit feedback.");
+      // @ts-expect-error: error may not have 'data' property, but we want to access error message if present
+      toast.error(error?.data?.message  || "Failed to submit feedback.");
     }
   };
 
@@ -70,7 +71,6 @@ const FeedbackForm = () => {
     }
   }, [feedbackId, feedback, setValue]);
 
-  console.log("is it valid?", !isValid);
   return (
     <div className={styles.feedbackFormContainer}>
       <GoBackBtn stroke="#4661E6" textColor="#647196" />
@@ -173,12 +173,17 @@ const FeedbackForm = () => {
             >
               Cancel
             </button>
+
             <button
               type="submit"
               className={styles.addButton}
-              // disabled={!isValid}
+              disabled={isCreating || isUpdating}
             >
-              {isEdit ? "Update Feedback" : "Add Feedback"}
+              {isCreating || isUpdating
+                ? "Processing..."
+                : isEdit
+                ? "Update Feedback"
+                : "Add Feedback"}
             </button>
           </div>
         </form>

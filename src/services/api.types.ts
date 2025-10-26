@@ -20,7 +20,7 @@ export type categoryResponse = {
 };
 
 export type FeedBack = {
-  id: number;
+  id: number ;
   _id: string;
   user: string;
   title: string;
@@ -29,6 +29,8 @@ export type FeedBack = {
   upvotes?: number;
   comments?: Comment[];
   commentCount?: number;
+  
+
 };
 export interface Comment {
   id: string;
